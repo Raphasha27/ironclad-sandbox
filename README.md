@@ -1,3 +1,5 @@
+[![CI](https://github.com/Raphasha27/ironclad-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/ironclad-sandbox/actions/workflows/ci.yml)
+
 # Ironclad Sandbox
 
 > **The future of AI agent code execution** -- No Docker, no containers, no cloud sandboxes. Just pure, secure, blazing-fast Python execution powered by Rust.
