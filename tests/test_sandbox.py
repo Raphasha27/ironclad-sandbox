@@ -5,18 +5,18 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from sandbox.executor import MontySandbox, SecurityPolicy, MontyAgentExecutor
+from sandbox.executor import Sandbox, SecurityPolicy, MontyAgentExecutor
 
 
-class TestMontySandbox:
+class TestSandbox:
     def test_basic_execution(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         result = sandbox.execute("output = 2 + 2")
         assert result.success
         assert result.output == 4
 
     def test_list_operations(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         result = sandbox.execute("""
 data = [5, 3, 8, 1, 9, 2]
 output = sorted(data)
@@ -25,7 +25,7 @@ output = sorted(data)
         assert result.output == [1, 2, 3, 5, 8, 9]
 
     def test_dict_operations(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         result = sandbox.execute("""
 output = {"mean": sum([1, 2, 3]) / 3, "count": 3}
 """)
@@ -33,25 +33,25 @@ output = {"mean": sum([1, 2, 3]) / 3, "count": 3}
         assert result.output["mean"] == 2.0
 
     def test_global_injection(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         sandbox.set_global("input_data", [10, 20, 30])
         result = sandbox.execute("output = sum(input_data)")
         assert result.success
         assert result.output == 60
 
     def test_error_handling(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         result = sandbox.execute("output = 1 / 0")
         assert not result.success
         assert "ZeroDivisionError" in result.error
 
     def test_dangerous_builtins_blocked(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         result = sandbox.execute("__import__('os').system('whoami')")
         assert not result.success
 
     def test_execution_stats(self):
-        sandbox = MontySandbox()
+        sandbox = Sandbox()
         sandbox.execute("x = 1")
         sandbox.execute("y = 2")
         stats = sandbox.get_stats()
@@ -88,3 +88,4 @@ class TestMontyAgentExecutor:
         result = executor.analyze_threat_logs(logs)
         assert result.success
         assert result.output["suspicious_ips"]["192.168.1.100"] == 3
+
