@@ -1,5 +1,5 @@
 pydantic==2.9.2
-pydantic-ai==0.1.0
+pydantic-ai==2.11.0
 httpx==0.27.2
 ruff==0.6.9
 pytest==8.3.3
