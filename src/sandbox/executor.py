@@ -36,7 +36,7 @@ class SecurityPolicy:
     ])
 
 
-class MontySandbox:
+class Sandbox:
     """
     Secure code execution sandbox powered by Pydantic Monty.
     
@@ -138,11 +138,11 @@ class MontySandbox:
 class MontyAgentExecutor:
     """
     High-level executor for AI agent code execution tasks.
-    Wraps MontySandbox with agent-specific functionality.
+    Wraps Sandbox with agent-specific functionality.
     """
 
     def __init__(self, policy: Optional[SecurityPolicy] = None):
-        self.sandbox = MontySandbox(policy)
+        self.sandbox = Sandbox(policy)
 
     def run_agent_code(self, code: str, context: Optional[dict] = None) -> dict:
         """
@@ -200,3 +200,4 @@ output = {
 }
 """
         return self.sandbox.execute(code)
+
