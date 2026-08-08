@@ -285,3 +285,8 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 *Pioneering AI agent infrastructure from Johannesburg, South Africa*
 
+## Contributors
+
+This project is developed and maintained together with the team:
+- [Raphasha27](https://github.com/Raphasha27) — Project lead & maintainer
+- [DkMash](https://github.com/DkMash) — Teammate
